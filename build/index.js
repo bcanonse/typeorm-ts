@@ -14,14 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const app_1 = __importDefault(require("./app"));
+const config_1 = require("./config/config");
 const db_1 = require("./db");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield db_1.AppDataSource.initialize();
             console.log('Database connected');
-            app_1.default.listen(3000);
-            console.log('Server running in port 3000');
+            app_1.default.listen(config_1.config.port);
+            console.log(`Server running in port ${config_1.config.port}`);
         }
         catch (error) {
             console.error(error);

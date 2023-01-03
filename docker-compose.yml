@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: 'npm run dev'
+    env_file:
+      - .env
     ports:
       - 3000:3000
     volumes:
@@ -16,9 +18,11 @@ services:
   db:
     image: postgres:12.5-alpine
     restart: always
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: ts
-      POSTGRES_PASSWORD: ts
-      POSTGRES_DB: ts
+      POSTGRES_USER: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
       - 5435:5432
