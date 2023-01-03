@@ -1,4 +1,4 @@
-import { UpdateResult } from 'typeorm'
+import { DeleteResult, UpdateResult } from 'typeorm'
 import { User } from '../entities/User'
 
 export const userCreateService = async (firstname: string, lastname: string): Promise<User> => {
@@ -19,4 +19,8 @@ export const userGetByIdService = async (id: string): Promise<User | null> => {
 
 export const userUpdateService = async (id: string, data: User): Promise<UpdateResult> => {
   return await User.update({ id }, data)
+}
+
+export const userDeleteService = async (id: string): Promise<DeleteResult> => {
+  return await User.delete({ id })
 }
