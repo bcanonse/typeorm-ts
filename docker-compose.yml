@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'npm run dev'
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:12.5-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ts
+      POSTGRES_PASSWORD: ts
+      POSTGRES_DB: ts
+    ports:
+      - 5435:5432
