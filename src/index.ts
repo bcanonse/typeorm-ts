@@ -2,7 +2,7 @@ import 'reflect-metadata'
 import app from './app'
 import { AppDataSource } from './db'
 
-async function main() {
+async function main (): Promise<void> {
   try {
     await AppDataSource.initialize()
     console.log('Database connected')
@@ -13,4 +13,4 @@ async function main() {
   }
 }
 
-main()
+void main()
