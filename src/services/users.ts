@@ -7,3 +7,7 @@ export const userCreateService = async (firstname: string, lastname: string): Pr
 
   return await user.save()
 }
+
+export const userGetService = async (): Promise<User[]> => {
+  return await User.find()
+}

@@ -1,5 +1,5 @@
 import { Router, Response, Request } from 'express'
-import { userCreateService } from '../services/users'
+import { userCreateService, userGetService } from '../services/users'
 
 const router = Router()
 
@@ -21,7 +21,19 @@ router.post('/', (req: Request, res: Response) => {
 })
 
 router.get('/', (_, res: Response) => {
-  res.send('hello world')
+  void (async () => {
+    try {
+      const users = await userGetService()
+      res.json({
+        message: 'users retrieved',
+        data: users
+      })
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(500).json({ message: error.message })
+      }
+    }
+  })()
 })
 
 export default router
